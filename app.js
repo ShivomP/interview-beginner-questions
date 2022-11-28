@@ -7,6 +7,7 @@ let str = "shivom"
 const reverseString = (str) => {
     return str.split("").reverse().join("")
 }
+
 console.log(reverseString(str))
 
 // PALINDROME
@@ -14,20 +15,22 @@ console.log(reverseString(str))
 let pal = "racecar"
 
 const palindrome = (pal) => {
-    const reverse = pal.split("").reverse().join("")
-    return pal === reverse
+    const reversed = pal.split("").reverse().join("")
+    return reversed === pal
 }
+
 console.log(palindrome(pal))
 
 // REVERSE INTEGER
 
-let int = 503
+let int = -503
 
-const reverseInteger = (int) => {
-    const reverse = int.toString().split("").reverse().join("")
-    return parseInt(reverse) * Math.sign(int)
+const reverseInt = (int) => {
+    const reversed = int.toString().split("").reverse().join("")
+    return parseInt(reversed) * Math.sign(int)
 }
-console.log(reverseInteger(int))
+
+console.log(reverseInt(int))
 
 // STRINGIFY ID
 
@@ -39,13 +42,13 @@ let arr = [
     {id: 5, name: 'riddhi'}
 ]
 
-const stringifyId = (arr) => {
-    const idArr = arr.map(obj => obj.id)
-    const uniqueArr = [... new Set(idArr)]
-    return uniqueArr.join(", ")
+const stringify = (arr) => {
+    const arrId = arr.map(obj => obj.name)
+    const unique = [... new Set(arrId)]
+    return unique.join(", ") 
 }
 
-console.log(stringifyId(arr))
+console.log(stringify(arr))
 
 // MAXIMUM CHARACTERS
 
@@ -55,41 +58,32 @@ const maxCharacter = (kive) => {
     const charMap = new Map()
     let max = 0
     let maxChar = ""
-    for (const char of kive){
+    for(const char of kive){
         const count = charMap.get(char)
         charMap.set(char, count + 1 || 1)
     }
-    for (const [char, count] of charMap){
-        if (count > max){
+    for(const [char, count] of charMap){
+        if(max < count){
             max = count
             maxChar = char
         }
     }
     return maxChar
 }
+
 console.log(maxCharacter(kive))
 
 // ANAGRAMS
 
-const strA = "cat"
-const strB = "act"
-
-// const cleanString = .toLowerCase().replaceAll(" ", "").split("").sort().join("")
+const strA = "cAt"
+const strB = "ac t"
 
 const anagrams = (strA, strB) => {
-    
-    return  strA.toLowerCase()
-                .replaceAll(" ", "")
-                .split("")
-                .sort()
-                .join("")
-                 === 
-            strB.toLowerCase()
-                .replaceAll(" ", "")
-                .split("")
-                .sort()
-                .join("")
+    return  strA.toLowerCase().replaceAll(" ", "").split("").sort().join("")
+                ===
+            strB.toLowerCase().replaceAll(" ", "").split("").sort().join("")
 }
+
 console.log(anagrams(strA, strB))
 
 // ARRAY CHUNK
@@ -99,9 +93,9 @@ const size = 2
 
 const arrayChunk = (array, size) => {
     const chunkedArray = []
-    for (let i = 0; i < array.length; i += size){
-        const subarray = array.slice(i, i + size)
-        chunkedArray.push(subarray)
+    for(let i = 0; i < array.length; i+= size){
+        const chunk = array.slice(i, i + size)
+        chunkedArray.push(chunk)
     }
     return chunkedArray
 }
@@ -113,34 +107,34 @@ console.log(arrayChunk(array, size))
 let sentence = "a green apple"
 
 const capitalize = (sentence) => {
-    const result = []
+    const capsSentence = []
     for(let word of sentence.split(" ")){
         const capsWord = word[0].toUpperCase() + word.slice(1)
-        result.push(capsWord)
+        capsSentence.push(capsWord)
     }
-    return result.join(" ")
+    return capsSentence.join(" ")
 }
+
 console.log(capitalize(sentence))
 
 // STEPS
 
 let n = 4
 
-const steps = (n) => {
-    for(let rows = 0; rows < n; ++rows){
+const staircase = (n) => {
+    for(let rows = 0; rows <= n; rows++){
         let step = ""
-        for (let columns = 0; columns < n; ++columns){
-            if (columns <= rows){
+        for(let column = 0; column <= n; ++column){
+            if(column <= rows){
                 step += "#"
             }
-            else{
-                step += " "
-            }
+            else step += " "
         }
         console.log(step)
     }
 }
-console.log(steps(n))
+
+console.log(staircase(n))
 
 // PYRAMID
 
@@ -149,17 +143,16 @@ let p = 3
 const pyramid = (p) => {
     const pyramidWidth = 2 * p - 1
     const middle = Math.floor(pyramidWidth / 2)
-    for (let row = 0; row < p; ++row){
+    for(let row = 0; row < p; ++row){
         let step = ""
-        for(let column = 0; column < pyramidWidth; ++column){
-            if (column >= middle - row && column <= middle + row){
+        for(let column = 0; column <= pyramidWidth; ++column){
+            if(column <= middle + row && column >= middle - row){
                 step += "#"
             }
-            else{
-                step += " "
-            }
+            else step += " "
         }
         console.log(step)
     }
 }
+
 console.log(pyramid(p))
